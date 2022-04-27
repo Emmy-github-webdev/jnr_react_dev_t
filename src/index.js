@@ -1,27 +1,24 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ApolloProvider} from 'react-apollo';
-import { createHttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloClient, gql } from 'apollo-boost';
-
-const httpLink = createHttpLink({
-  uri: 'http://localhost:4000'
-});
-
-const cache = new InMemoryCache();
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql
+} from "@apollo/client";
 
 const client = new ApolloClient({
-  link: httpLink,
-  cache
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache()
 });
 
-client.query({
-  query: gql`
-  {
+client
+  .query({
+    query: gql`
     query {
       category {
         name
@@ -33,20 +30,30 @@ client.query({
           description
           category
           brand
+          prices {
+            currency {
+              label
+              symbol
+            }
+            amount
+          }
         }
       }
     }
-  }
-  `
-}).then(res => console.log(res));
+    `
+  })
+  .then(result => console.log(result));
 
-ReactDOM.render(
-  <ApolloProvider client={client}>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <ApolloProvider client={client}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </ApolloProvider>,
-  document.getElementById('root'),
-)
+  </ApolloProvider>
+);
 
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
