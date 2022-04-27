@@ -4,5 +4,5 @@
 ### Packages
 - Installed packages includes
 1. apollo-boost
-2. reat-apollo
+2. react-apollo
 3. graphql
