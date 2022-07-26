@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react';
 
-function Movieform() {
-  const [form, setForm] = useState({name: "", duration: "", ratings: ""});
+function Movieform({ form, setForm }) {
+  
   // const [duration, setDuration] = useState();
   // const [active, setActive] = useState(false);
   // const [error, setError] = useState(false);
@@ -17,6 +17,9 @@ function Movieform() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("hello from handle submit", form );
+    setForm({
+      ...form,
+    })
   }
 
   return (
