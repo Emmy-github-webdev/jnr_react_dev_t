@@ -17,9 +17,12 @@ function Movieform({ form, setForm }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("hello from handle submit", form );
-    setForm({
-      ...form,
-    })
+    if(form){
+      setForm({
+        ...form,
+      });
+      setForm("");
+    }
   }
 
   return (
