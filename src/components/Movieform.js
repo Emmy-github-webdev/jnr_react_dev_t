@@ -17,13 +17,18 @@ function Movieform({ form, setForm }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("hello from handle submit", form );
-    if(form){
-      setForm({
-        ...form,
-      });
-      setForm("");
-    }
-  }
+    const checkEmptyInput = !Object.values(form).every(res=>res==="");
+    if(checkEmptyInput){
+      const newData = (data)=>([...data, form]);
+      setForm({newData});
+      const emptyInput = {
+        name: '',
+        ratings: '',
+        duration: ''
+      };
+      setForm(emptyInput)
+    };
+  };
 
   return (
     <section>

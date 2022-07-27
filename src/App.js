@@ -7,7 +7,13 @@ import { Movieform, Movieslist, Search } from './components'
 const title = 'Favorite Movie Directory'
 
 function App() {
-  const [form, setForm] = useState({name: "", duration: "", ratings: ""});
+  const [form, setForm] = useState([
+    {
+      name: "", 
+      duration: "", 
+      ratings: ""
+    }
+  ]);
   return (
     <div>
       <h8k-navbar header={ title } />
