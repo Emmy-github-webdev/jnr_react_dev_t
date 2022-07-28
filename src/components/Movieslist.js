@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Movieslist({form}) {
+  console.log("Movie list", form)
   
     return (
       <section>

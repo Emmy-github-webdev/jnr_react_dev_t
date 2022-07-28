@@ -1,34 +1,26 @@
 import React from 'react';
 
-function Movieform({ form, setForm }) {
+function Movieform({form, setForm}) {
+ 
+
   
   // const [duration, setDuration] = useState();
   // const [active, setActive] = useState(false);
   // const [error, setError] = useState(false);
 
   const handleChange = (e) => {
-    // setActive(true);
-    setForm({
+    setForm ({
       ...form,
-      [e.target.id]: (e.target.value),
+      [e.target.id]: e.target.value
     });
+    
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("hello from handle submit", form );
-    const checkEmptyInput = !Object.values(form).every(res=>res==="");
-    if(checkEmptyInput){
-      const newData = (data)=>([...data, form]);
-      setForm({newData});
-      const emptyInput = {
-        name: '',
-        ratings: '',
-        duration: ''
-      };
-      setForm(emptyInput)
-    };
-  };
+    
+  }
 
   return (
     <section>
