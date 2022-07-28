@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Movieform({form, setForm}) {
+function Movieform({ form, handleChange }) {
  
 
   
@@ -8,18 +8,10 @@ function Movieform({form, setForm}) {
   // const [active, setActive] = useState(false);
   // const [error, setError] = useState(false);
 
-  const handleChange = (e) => {
-    setForm ({
-      ...form,
-      [e.target.id]: e.target.value
-    });
-    
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("hello from handle submit", form );
-    
+     
   }
 
   return (

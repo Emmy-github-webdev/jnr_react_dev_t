@@ -15,12 +15,20 @@ function App() {
     }
   );
 
+  const handleChange = (e) => {
+    setForm ({
+      ...form,
+      [e.target.id]: e.target.value
+    });
+    
+  };
+
   return (
     <div>
       <h8k-navbar header={ title } />
       <div className='layout-row justify-content-center mt-100'>
         <div className='w-30 mr-75'>
-          <Movieform form={form} setForm={setForm}/>
+          <Movieform handleChange={handleChange} form={form} />
         </div>
         <div className='layout-column w-30'>
           <Search />
