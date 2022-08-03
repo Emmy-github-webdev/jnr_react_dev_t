@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Movieform({ form, handleChange }) {
+function Movieform({ setSubmittedForm }) {
  
-
+  const [form, setForm] = useState({
+    name: "", 
+    duration: "", 
+    ratings: ""
+  })
   
   // const [duration, setDuration] = useState();
   // const [active, setActive] = useState(false);
   // const [error, setError] = useState(false);
+  
+  const handleChange = (e) => {
+    setForm ({
+      ...form,
+      [e.target.id]: e.target.value
+    });
+    
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("hello from handle submit", form );
-     
-  }
+    setSubmittedForm(form);
+  };
 
   return (
     <section>
