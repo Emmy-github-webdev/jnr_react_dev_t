@@ -1,36 +1,39 @@
 import React, { useState } from 'react';
 
-function Movieform({ setSubmittedForm }) {
- 
-  const [form, setForm] = useState({
-    name: "", 
-    duration: "", 
-    ratings: ""
-  })
-  
-  // const [duration, setDuration] = useState();
-  // const [active, setActive] = useState(false);
-  // const [error, setError] = useState(false);
-  
-  const handleChange = (e) => {
-    setForm ({
-      ...form,
-      [e.target.id]: e.target.value
-    });
-    
-  };
+function Movieform() {
+ const [formInput, setFormInput] = useState({
+  name: "",
+  ratings: "",
+  duration: ""
+ });
 
+ const [movieData, setMovieData] = useState([]);
+
+ const changeHandler = (e) => {
+    e.preventDefault();
+    setFormInput({
+      ...formInput,
+      [e.target.id]: e.target.value,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hello from handle submit", form );
-    setSubmittedForm(form);
-  };
+    //console.log(formInput)
+    if(formInput){
+      setMovieData((list) => [...list, formInput]);
+      setFormInput({
+        name: '',
+        ratings: '',
+        duration: ''
+      });
+    }
+  }
 
   return (
     <section>
       <div className='card pa-30'>
-        <form onSubmit={ handleSubmit }>
+        <form onSubmit={handleSubmit}>
           <div className='layout-column mb-15'>
             <label htmlFor='name' className='mb-3'>Movie Name</label>
             <input 
@@ -38,8 +41,7 @@ function Movieform({ setSubmittedForm }) {
               id='name'
               placeholder='Enter Movie Name'
               data-testid='nameInput'
-              value={form.name}
-              onChange={handleChange}
+              onChange={changeHandler}
             />
           </div>
           <div className='layout-column mb-15'>
@@ -49,8 +51,7 @@ function Movieform({ setSubmittedForm }) {
               id='ratings'
               placeholder='Enter Rating on a scale of 1 to 100'
               data-testid='ratingsInput'
-              value={form.ratings}
-              onChange={handleChange}
+              onChange={changeHandler}
             />
           </div>
           <div className='layout-column mb-30'>
@@ -60,8 +61,7 @@ function Movieform({ setSubmittedForm }) {
               id='duration'
               placeholder='Enter duration in hours or minutes'
               data-testid='durationInput'
-              value={form.duration}
-              onChange={handleChange}
+              onChange={changeHandler}
             />
           </div>
           {/* Use this div when time format is invalid */}
@@ -80,6 +80,17 @@ function Movieform({ setSubmittedForm }) {
               Add Movie
             </button>
           </div>
+          {movieData.map((movie, i) => {
+            return (
+              <ul key={i}>
+                <li>
+                  <div>{movie.name}</div>
+                  <div>{movie.ratings}</div>
+                  <div>{movie.duration}</div>
+                </li>
+              </ul>
+            )
+          })}
           </form>
       </div> 
     </section>
