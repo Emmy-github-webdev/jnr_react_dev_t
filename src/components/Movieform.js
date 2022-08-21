@@ -1,34 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function Movieform() {
- const [formInput, setFormInput] = useState({
-  name: "",
-  ratings: "",
-  duration: ""
- });
-
- const [movieData, setMovieData] = useState([]);
-
- const changeHandler = (e) => {
-    e.preventDefault();
-    setFormInput({
-      ...formInput,
-      [e.target.id]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //console.log(formInput)
-    if(formInput){
-      setMovieData((list) => [...list, formInput]);
-      setFormInput({
-        name: '',
-        ratings: '',
-        duration: ''
-      });
-    }
-  }
+function Movieform({changeHandler, formInput, handleSubmit}) {
 
   return (
     <section>
@@ -41,6 +13,7 @@ function Movieform() {
               id='name'
               placeholder='Enter Movie Name'
               data-testid='nameInput'
+              value={formInput.name}
               onChange={changeHandler}
             />
           </div>
@@ -51,6 +24,7 @@ function Movieform() {
               id='ratings'
               placeholder='Enter Rating on a scale of 1 to 100'
               data-testid='ratingsInput'
+              value={formInput.ratings}
               onChange={changeHandler}
             />
           </div>
@@ -61,6 +35,7 @@ function Movieform() {
               id='duration'
               placeholder='Enter duration in hours or minutes'
               data-testid='durationInput'
+              value={formInput.duration}
               onChange={changeHandler}
             />
           </div>
@@ -80,7 +55,7 @@ function Movieform() {
               Add Movie
             </button>
           </div>
-          {movieData.map((movie, i) => {
+          {/* {movieData.map((movie, i) => {
             return (
               <ul key={i}>
                 <li>
@@ -90,7 +65,7 @@ function Movieform() {
                 </li>
               </ul>
             )
-          })}
+          })} */}
           </form>
       </div> 
     </section>
