@@ -50,7 +50,9 @@ function App() {
           <Search />
           <Movieslist movieData={movieData} /> 
           <div data-testid='noResult'>
-            <h3 className='text-center'>No Results Found</h3>
+            <h3 className='text-center'>
+              {movieData.length < 1 ? ("No Results Found"): null}
+            </h3>
           </div>
         </div>
       </div> 

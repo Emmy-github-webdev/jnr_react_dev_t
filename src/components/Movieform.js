@@ -55,17 +55,6 @@ function Movieform({changeHandler, formInput, handleSubmit}) {
               Add Movie
             </button>
           </div>
-          {/* {movieData.map((movie, i) => {
-            return (
-              <ul key={i}>
-                <li>
-                  <div>{movie.name}</div>
-                  <div>{movie.ratings}</div>
-                  <div>{movie.duration}</div>
-                </li>
-              </ul>
-            )
-          })} */}
           </form>
       </div> 
     </section>
