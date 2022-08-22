@@ -12,12 +12,15 @@ function Movieform({addMovie}) {
     }
     const tDuration = duration.slice(-1);
     if(tDuration === "m" || tDuration === "h"){
-      const tValue = Number(duration.slice(0, duration.length -1));
+      const tValue = Number(duration.slice(0, duration.length - 1));
       setError(false);
       if(tDuration === "m"){
-        const tInMinutes = tValue /60;
+        const tInMinutes = tValue / 60;
         const tInHours = (Math.round(tInMinutes * 10) /10).toFixed(1);
         addMovie(name, Number(rating), tInHours);
+        setName("");
+        setRating("");
+        setDuration("");
       } else {
         addMovie(name, Number(rating), tValue);
       }

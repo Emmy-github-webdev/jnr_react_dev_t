@@ -25,7 +25,7 @@ function App() {
   
   if(searchField.length >= 2){
     moviesFilter = movieData.filter((movie) => 
-      movie.name.toLoweCase().startsWith(searchField.toLocaleLowerCase())
+      movie.name.toLowerCase().startsWith(searchField.toLowerCase())
     );
   }
 
@@ -40,7 +40,7 @@ function App() {
         <div className='layout-column w-30'>
           <Search searchField={searchField} setSearchField={setSearchField}/>
           {filteredMovieInDesc.length !== 0 && <Movieslist movieData={filteredMovieInDesc} /> }
-          {filteredMovieInDesc.length ===0 && movieData.length !== 0 && (
+          {filteredMovieInDesc.length === 0 && movieData.length !== 0 && (
             <div data-testid='noResult'>
               <h3 className='text-center'>No Results Found</h3>
             </div>
