@@ -13,30 +13,28 @@ function App() {
     duration: ""
    });
   
-  //  const [movieData, setMovieData] = useState([]);
+    const [movieData, setMovieData] = useState([]);
   
-   const changeHandler = (e) => {
-      e.preventDefault();
+  const changeHandler = (e) => {
+    e.preventDefault();
+    setFormInput({
+      ...formInput,
+      [e.target.id]: e.target.value,
+    });
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //console.log(formInput)
+    if(formInput){
+      setMovieData((list) => [...list, formInput]);
       setFormInput({
-        ...formInput,
-        [e.target.id]: e.target.value,
+        name: '',
+        ratings: '',
+        duration: ''
       });
-    };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      //console.log(formInput)
-      if(formInput){
-        setMovieData((list) => [...list, formInput]);
-        setFormInput({
-          name: '',
-          ratings: '',
-          duration: ''
-        });
-      }
     }
-  
-   const [movieData, setMovieData] = useState([]);
+  }
   
 
   return (
@@ -50,9 +48,7 @@ function App() {
           <Search />
           <Movieslist movieData={movieData} /> 
           <div data-testid='noResult'>
-            <h3 className='text-center'>
-              {movieData.length < 1 ? ("No Results Found"): null}
-            </h3>
+            <h3 className='text-center'>No Results Found</h3>
           </div>
         </div>
       </div> 
